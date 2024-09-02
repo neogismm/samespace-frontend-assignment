@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SongList = ({ searchQuery }) => {
+const SongList = ({ searchQuery, setActiveSong, showTopTracks }) => {
   const [songs, setSongs] = useState([]);
 
   const fetchData = async () => {
@@ -9,7 +9,7 @@ const SongList = ({ searchQuery }) => {
       const data = await res.json();
       setSongs(data.data);
     } catch (error) {
-      console.error("Error in fetching songs", error);
+      console.error("Error in fetching songs: ", error);
     }
   };
 
@@ -19,20 +19,22 @@ const SongList = ({ searchQuery }) => {
 
   const filteredSongs = songs.filter(
     (song) =>
-      song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchQuery.toLowerCase())
+      (song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      song.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
+      (!showTopTracks || song.top_track)
   );
 
   return (
     <ul className="flex flex-col">
       {filteredSongs.map((item) => (
-        <button key={item.id}>
+        <button onClick={() => setActiveSong(item)} key={item.id}>
           <li className="flex border h-24">
             <div>
               <img
                 height={40}
                 width={40}
                 src={`https://cms.samespace.com/assets/${item.cover}`}
+                alt={`${item.name} cover`}
               />
             </div>
             <div>
