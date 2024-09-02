@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SongList = ({ searchQuery, setActiveSong, showTopTracks }) => {
+const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover }) => {
   const [songs, setSongs] = useState([]);
 
   const fetchData = async () => {
@@ -24,10 +24,15 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks }) => {
       (!showTopTracks || song.top_track)
   );
 
+  const handleSongClick = (song) => {
+    setActiveSong(song);
+    setSongCover(song.cover);
+  }
+
   return (
     <ul className="flex flex-col">
       {filteredSongs.map((item) => (
-        <button onClick={() => setActiveSong(item)} key={item.id}>
+        <button onClick={() => handleSongClick(item)} key={item.id}>
           <li className="flex border h-24">
             <div>
               <img

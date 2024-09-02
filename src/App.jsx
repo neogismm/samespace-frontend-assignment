@@ -8,6 +8,7 @@ const App = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSong, setActiveSong] = useState(null);
   const [showTopTracks, setShowTopTracks] = useState(false);
+  const [songCover, setSongCover] = useState(null);
 
   const showTopTracksList = (show) => {
     setShowTopTracks(show);
@@ -29,10 +30,10 @@ const App = () => {
           </div>
 
           <Search onSearch={setSearchQuery} />
-          <SongList searchQuery={searchQuery} setActiveSong={setActiveSong} showTopTracks={showTopTracks} />
+          <SongList searchQuery={searchQuery} setActiveSong={setActiveSong} showTopTracks={showTopTracks} setSongCover={setSongCover} />
         </div>
         <div className={`flex border items-center justify-center ${flexboxHeight}`}>
-          {activeSong && <AudioPlayer song={activeSong} nextSong={activeSong} prevSong={activeSong} />}
+          {activeSong && <AudioPlayer song={activeSong} cover={songCover}/>}
         </div>
       </ResizableFlexbox>
     </div>
