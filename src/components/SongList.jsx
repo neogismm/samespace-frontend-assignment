@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover }) => {
+const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, setFilteredSongs, duration }) => {
   const [songs, setSongs] = useState([]);
 
   const fetchData = async () => {
@@ -15,6 +15,7 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover }) =
 
   useEffect(() => {
     fetchData();
+    setFilteredSongs(filteredSongs);
   }, []);
 
   const filteredSongs = songs.filter(
@@ -45,7 +46,7 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover }) =
             <div>
               Song: {item.name} Artist: {item.artist}
             </div>
-            <div>5:24</div>
+            <div>{duration ? new Date(duration * 1000).toISOString().substr(11, 8) : "0:00"}</div>
           </li>
         </button>
       ))}

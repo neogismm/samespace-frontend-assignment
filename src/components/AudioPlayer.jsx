@@ -1,13 +1,16 @@
 import { VolumeX, Volume2 } from "lucide-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { PiFastForwardFill, PiPauseFill, PiPlayFill, PiRewindFill } from "react-icons/pi";
+import {
+  PiFastForwardFill,
+  PiPauseFill,
+  PiPlayFill,
+  PiRewindFill,
+} from "react-icons/pi";
 
-const AudioPlayer = ({ song, nextSong, prevSong }) => {
+const AudioPlayer = ({ song, nextSong, prevSong, isPlaying, setIsPlaying, setDuration }) => {
   const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
   const [isMute, setIsMute] = useState(false);
-  const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
 
   const handlePlayPause = () => {
@@ -40,17 +43,17 @@ const AudioPlayer = ({ song, nextSong, prevSong }) => {
     }
   };
 
-  const formatTime = (time) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-  };
-
   const handleSongEnd = () => {
     nextSong();
     setIsPlaying(true);
     setCurrentTime(0);
   };
+
+  useEffect(() => {
+    if (audioRef.current && isPlaying) {
+      audioRef.current.play();
+    }
+  }, [isPlaying, song]);
 
   return (
     <div className="p-4 rounded-lg  flex flex-col items-center h-screen py-20">
@@ -76,7 +79,7 @@ const AudioPlayer = ({ song, nextSong, prevSong }) => {
         <input
           type="range"
           min={0}
-          max={duration}
+          max={audioRef.current ? audioRef.current.duration : 0}
           value={currentTime}
           onChange={(e) => {
             if (audioRef.current) {
@@ -100,10 +103,7 @@ const AudioPlayer = ({ song, nextSong, prevSong }) => {
           >
             <PiRewindFill className="w-12 h-12  rounded-full p-2" />
           </button>
-          <button
-            className="mx-2 p-2 rounded-full"
-            onClick={handlePlayPause}
-          >
+          <button className="mx-2 p-2 rounded-full" onClick={handlePlayPause}>
             {isPlaying ? (
               <PiPauseFill className="w-10 h-10 text-black rounded-full p-2" />
             ) : (
