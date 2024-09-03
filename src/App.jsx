@@ -25,7 +25,7 @@ const App = () => {
     setCurrentSongIndex(index);
     setIsPlaying(true); // Set isPlaying to true when a new song is selected
   };
-
+  
   const handleNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % filteredSongs.length;
     setActiveSong(filteredSongs[nextIndex]);
@@ -78,7 +78,7 @@ const App = () => {
             setActiveSong={handleSetActiveSong}
             showTopTracks={showTopTracks}
             setSongCover={setSongCover}
-            setFilteredSongs={setFilteredSongs}
+            onSetFilteredSongs={setFilteredSongs}
             duration={duration}
           />
         </div>

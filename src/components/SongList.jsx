@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, setFilteredSongs, duration }) => {
+const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, onSetFilteredSongs, duration }) => {
   const [songs, setSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -15,20 +16,23 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, set
 
   useEffect(() => {
     fetchData();
-    setFilteredSongs(filteredSongs);
   }, []);
 
-  const filteredSongs = songs.filter(
-    (song) =>
-      (song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      song.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      (!showTopTracks || song.top_track)
-  );
+  useEffect(() => {
+    const filtered = songs.filter(
+      (song) =>
+        (song.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        song.artist.toLowerCase().includes(searchQuery.toLowerCase())) &&
+        (!showTopTracks || song.top_track)
+    );
+    setFilteredSongs(filtered);
+    onSetFilteredSongs(filtered);
+  }, [songs, searchQuery, showTopTracks, onSetFilteredSongs]);
 
   const handleSongClick = (song) => {
     setActiveSong(song);
     setSongCover(song.cover);
-  }
+  };
 
   return (
     <ul className="flex flex-col">
