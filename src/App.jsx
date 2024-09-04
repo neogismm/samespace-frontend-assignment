@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ResizableFlexbox from "./components/ResizableFlexbox";
 import Search from "./components/Search";
 import SongList from "./components/SongList";
 import AudioPlayer from "./components/AudioPlayer";
+import { ThemeContext } from "./context/ThemeContext";
 
 const App = () => {
+  const { themeColor } = useContext(ThemeContext);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSong, setActiveSong] = useState(null);
   const [showTopTracks, setShowTopTracks] = useState(false);
@@ -14,6 +17,10 @@ const App = () => {
   const [isPlaying, setIsPlaying] = useState(false); // New state for playing status
   const [bgColor, setBgColor] = useState("bg-white");
   const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = themeColor;
+  }, [themeColor]);
 
   const showTopTracksList = (show) => {
     setShowTopTracks(show);
@@ -25,7 +32,7 @@ const App = () => {
     setCurrentSongIndex(index);
     setIsPlaying(true); // Set isPlaying to true when a new song is selected
   };
-  
+
   const handleNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % filteredSongs.length;
     setActiveSong(filteredSongs[nextIndex]);
@@ -48,10 +55,11 @@ const App = () => {
   let flexboxHeight = "h-screen";
 
   return (
-    <div className="mt-4">
+    // <div className={`bg-gradient-to-r from-[${themeColor}] to-black`}>
+    <div className="bg-gradient-to-l from-gray-950" >
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
         <div
-          className={`flex border items-center justify-center ${flexboxHeight}`}
+          className={`flex items-center justify-center ${flexboxHeight}`}
         >
           <p>Logo & Profile</p>
         </div>
@@ -83,7 +91,7 @@ const App = () => {
           />
         </div>
         <div
-          className={`flex border items-center justify-center ${flexboxHeight}`}
+          className={`flex items-center justify-center min-w-[361px] ${flexboxHeight}`}
         >
           {activeSong && (
             <AudioPlayer

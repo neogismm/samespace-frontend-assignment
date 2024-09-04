@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from '../context/ThemeContext';
 
 const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, onSetFilteredSongs, duration }) => {
   const [songs, setSongs] = useState([]);
   const [filteredSongs, setFilteredSongs] = useState([]);
+  const { setThemeColor } = useContext(ThemeContext);
 
   const fetchData = async () => {
     try {
@@ -32,6 +34,7 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, onS
   const handleSongClick = (song) => {
     setActiveSong(song);
     setSongCover(song.cover);
+    setThemeColor(song.accent); // Assuming each song has a themeColor property
   };
 
   return (

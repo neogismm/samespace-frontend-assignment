@@ -5,7 +5,7 @@ const ResizableFlexbox = ({ children, height }) => {
     throw new Error("ResizableFlexbox must have exactly 3 children.");
   }
 
-  const [widths, setWidths] = useState([20, 50, 30]);
+  const [widths, setWidths] = useState([20, 30, 50]);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [startWidths, setStartWidths] = useState([]);
