@@ -8,7 +8,6 @@ import {
   PiRewindFill,
 } from "react-icons/pi";
 
-
 const AudioPlayer = ({
   song,
   nextSong,
@@ -20,6 +19,7 @@ const AudioPlayer = ({
   const audioRef = useRef(null);
   const [isMute, setIsMute] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const sliderRef = useRef(null);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -63,8 +63,21 @@ const AudioPlayer = ({
     }
   }, [isPlaying, song]);
 
+  useEffect(() => {
+    if (sliderRef.current) {
+      const value =
+        (currentTime / (audioRef.current ? audioRef.current.duration : 1)) *
+        100;
+      sliderRef.current.style.setProperty("--value", `${value}%`);
+    }
+  }, [currentTime, audioRef]);
+
   if (!song) {
-    return <div className="flex items-center justify-center h-screen max-w-[500px] text-gray-400">Please select a song</div>;
+    return (
+      <div className="flex items-center justify-center h-screen max-w-[500px] text-gray-400">
+        Please select a song
+      </div>
+    );
   }
 
   return (
@@ -74,11 +87,11 @@ const AudioPlayer = ({
         <span className="text-lg mb-4 text-gray-400">{song.artist}</span>
       </div>
       <div className="w-full h-[500px]">
-      <img
-        src={`https://cms.samespace.com/assets/${song.cover}`}
-        alt={song.name}
-        className="rounded-lg object-cover object-center h-full w-full"
-      />
+        <img
+          src={`https://cms.samespace.com/assets/${song.cover}`}
+          alt={song.name}
+          className="rounded-lg object-cover object-center h-full w-full"
+        />
       </div>
       <audio
         autoPlay
@@ -91,6 +104,7 @@ const AudioPlayer = ({
       />
       <div className="w-full mt-4">
         <input
+          ref={sliderRef}
           type="range"
           min={0}
           max={audioRef.current ? audioRef.current.duration : 0}
@@ -100,12 +114,14 @@ const AudioPlayer = ({
               audioRef.current.currentTime = e.target.value;
             }
           }}
-          className="w-full"
+          className="custom-slider w-full"
         />
       </div>
       <div className="flex justify-between w-full">
         <div className="mt-4 size-16 flex justify-center items-center bg-white/10 rounded-full p-2">
-          <button><HiDotsHorizontal className="w-10 h-10 rounded-full p-2" /></button>
+          <button>
+            <HiDotsHorizontal className="w-10 h-10 rounded-full p-2" />
+          </button>
         </div>
         <div className="mt-4 flex justify-center items-center">
           <button
