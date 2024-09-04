@@ -71,8 +71,8 @@ const App = () => {
           <a href="https://linkedin.com/in/pritamneog">
             <img
               alt="profile_image"
-              className="size-10 mb-11"
-              src="https://www.pngall.com/wp-content/uploads/5/Profile.png"
+              className="size-10 mb-11 rounded-full"
+              src="/profile.png"
             />
           </a>
         </div>
@@ -111,7 +111,7 @@ const App = () => {
         <div
           className={`flex items-center justify-center min-w-[361px] ${flexboxHeight}`}
         >
-          {activeSong && (
+          
             <AudioPlayer
               song={activeSong}
               nextSong={handleNextSong}
@@ -120,7 +120,7 @@ const App = () => {
               setIsPlaying={setIsPlaying}
               setDuration={setDuration}
             />
-          )}
+          
         </div>
       </ResizableFlexbox>
     </div>

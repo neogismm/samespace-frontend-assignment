@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import Loader from "./Loader";
 
 const SongList = ({
   searchQuery,
@@ -11,15 +12,19 @@ const SongList = ({
 }) => {
   const [songs, setSongs] = useState([]);
   const [filteredSongs, setFilteredSongs] = useState([]);
+  const [loading, setLoading] = useState(true); 
   const { setThemeColor } = useContext(ThemeContext);
 
   const fetchData = async () => {
+    setLoading(true); 
     try {
       const res = await fetch("https://cms.samespace.com/items/songs");
       const data = await res.json();
       setSongs(data.data);
     } catch (error) {
       console.error("Error in fetching songs: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,8 +50,13 @@ const SongList = ({
   };
 
   return (
-    <ul className="flex flex-col h-screen overflow-y-auto">
-      {filteredSongs.length === 0 ? (
+    <div className="flex flex-col h-screen overflow-y-auto">
+      {loading ? (
+        // <div className="flex justify-center items-center h-full">
+        //   <div className="loader">Loading...</div> {/* Loading animation */}
+        // </div>
+        <Loader />
+      ) : filteredSongs.length === 0 ? (
         <li className="text-center py-4 text-gray-400">Not found. Sorry!</li>
       ) : (
         filteredSongs.map((item) => (
@@ -75,7 +85,7 @@ const SongList = ({
           </button>
         ))
       )}
-    </ul>
+    </div>
   );
 };
 

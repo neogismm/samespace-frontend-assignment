@@ -63,6 +63,10 @@ const AudioPlayer = ({
     }
   }, [isPlaying, song]);
 
+  if (!song) {
+    return <div className="flex items-center justify-center h-screen max-w-[500px] text-gray-400">Please select a song</div>;
+  }
+
   return (
     <div className="flex flex-col items-center h-screen py-20 p-4 rounded-lg w-screen max-w-[500px]">
       <div className="flex flex-col w-full mb-4">
