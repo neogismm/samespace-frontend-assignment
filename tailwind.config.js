@@ -6,6 +6,9 @@ export default {
       colors: {
         spotifyGreen: "#1DB954",
       },
+      fontFamily: {
+        montserrat: ["Montserrat", "sans-serif"],
+      },
     },
   },
   plugins: [],

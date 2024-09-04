@@ -58,8 +58,8 @@ const SongList = ({
                 />
               </div>
 
-              <div className="flex flex-col items-start ml-3">
-                <span>{item.name}</span> <span>{item.artist}</span>
+              <div className="flex flex-col items-start justify-between ml-3">
+                <span>{item.name}</span> <span className="text-gray-400 text-sm">{item.artist}</span>
               </div>
             </div>
 

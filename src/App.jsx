@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     // <div className={`bg-gradient-to-l from-[${themeColor}]`}>
-    <div className="bg-gradient-to-l from-[#191414]">
+    <div className="font-montserrat bg-gradient-to-l from-[#191414]">
       <div></div>
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
         <div className={`flex items-center justify-center ${flexboxHeight}`}>
@@ -64,18 +64,22 @@ const App = () => {
         </div>
         <div className={`${flexboxHeight} w-full`}>
           <div className="flex mt-6 px-2">
-            <span
-              className="flex-1 text-left text-2xl font-bold"
+            <button
+              className={`flex-1 text-left text-2xl font-bold cursor-pointer ${
+                !showTopTracks ? "text-white" : "text-gray-400"
+              }`}
               onClick={() => showTopTracksList(false)}
             >
               For You
-            </span>
-            <span
-              className="flex-1 text-center text-2xl font-bold"
+            </button>
+            <button
+              className={`flex-1 text-center text-2xl font-bold cursor-pointer ${
+                showTopTracks ? "text-white" : "text-gray-400"
+              }`}
               onClick={() => showTopTracksList(true)}
             >
               Top Tracks
-            </span>
+            </button>
             <span className="flex-1 text-right"></span>
           </div>
           <div className="my-10">
