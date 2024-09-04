@@ -56,15 +56,14 @@ const App = () => {
 
   return (
     // <div className={`bg-gradient-to-r from-[${themeColor}] to-black`}>
-    <div className="bg-gradient-to-l from-[#191414]" >
+    <div className="bg-gradient-to-l from-[#191414]">
+      <div></div>
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
-        <div
-          className={`flex items-center justify-center ${flexboxHeight}`}
-        >
+        <div className={`flex items-center justify-center ${flexboxHeight}`}>
           <p>Logo & Profile</p>
         </div>
         <div className={`${flexboxHeight} w-full`}>
-          <div className="flex">
+          <div className="flex mt-6 px-2">
             <span
               className="flex-1 text-left text-2xl font-bold"
               onClick={() => showTopTracksList(false)}
@@ -79,8 +78,9 @@ const App = () => {
             </span>
             <span className="flex-1 text-right"></span>
           </div>
-
-          <Search onSearch={setSearchQuery} />
+          <div className="my-10">
+            <Search onSearch={setSearchQuery} />
+          </div>
           <SongList
             searchQuery={searchQuery}
             setActiveSong={handleSetActiveSong}
