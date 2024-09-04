@@ -1,5 +1,5 @@
 import { VolumeX, Volume2 } from "lucide-react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { HiDotsHorizontal } from "react-icons/hi";
 import {
   PiFastForwardFill,
@@ -7,6 +7,7 @@ import {
   PiPlayFill,
   PiRewindFill,
 } from "react-icons/pi";
+import { ThemeContext } from "../context/ThemeContext";
 
 const AudioPlayer = ({
   song,
@@ -20,6 +21,8 @@ const AudioPlayer = ({
   const [isMute, setIsMute] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const sliderRef = useRef(null);
+
+  const { setThemeColor } = useContext(ThemeContext);
 
   const handlePlayPause = () => {
     if (audioRef.current) {
@@ -55,6 +58,7 @@ const AudioPlayer = ({
     nextSong();
     setIsPlaying(true);
     setCurrentTime(0);
+    setThemeColor(song.accent); 
   };
 
   useEffect(() => {
@@ -129,6 +133,7 @@ const AudioPlayer = ({
             onClick={() => {
               prevSong();
               setIsPlaying(true);
+              setThemeColor(song.accent); 
             }}
           >
             <PiRewindFill className="w-12 h-12  rounded-full p-2" />
@@ -145,6 +150,7 @@ const AudioPlayer = ({
             onClick={() => {
               nextSong();
               setIsPlaying(true);
+              setThemeColor(song.accent);
             }}
           >
             <PiFastForwardFill className="w-12 h-12  rounded-full p-2" />
