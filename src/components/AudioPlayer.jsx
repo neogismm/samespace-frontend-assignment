@@ -67,7 +67,7 @@ const AudioPlayer = ({
     <div className="flex flex-col items-center h-screen py-20 p-4 rounded-lg w-screen max-w-[500px]">
       <div className="flex flex-col w-full mb-4">
         <span className="text-2xl font-bold mb-2">{song.name}</span>
-        <span className="text-lg mb-4">{song.artist}</span>
+        <span className="text-lg mb-4 text-gray-400">{song.artist}</span>
       </div>
       <div className="w-full h-[500px]">
       <img

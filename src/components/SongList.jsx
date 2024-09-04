@@ -46,31 +46,35 @@ const SongList = ({
 
   return (
     <ul className="flex flex-col h-screen overflow-y-auto">
-      {filteredSongs.map((item) => (
-        <button onClick={() => handleSongClick(item)} key={item.id}>
-          <li className="flex items-center justify-between rounded-lg h-[90px] px-2 cursor-pointer hover:bg-white/10">
-            <div className="flex">
-              <div className="size-11 rounded-full overflow-hidden mt-1">
-                <img
-                  className="w-full h-full object-cover object-center"
-                  src={`https://cms.samespace.com/assets/${item.cover}`}
-                  alt={`${item.name} cover`}
-                />
+      {filteredSongs.length === 0 ? (
+        <li className="text-center py-4 text-gray-400">Not found. Sorry!</li>
+      ) : (
+        filteredSongs.map((item) => (
+          <button onClick={() => handleSongClick(item)} key={item.id}>
+            <li className="flex items-center justify-between rounded-lg h-[90px] px-2 cursor-pointer hover:bg-white/10">
+              <div className="flex">
+                <div className="size-11 rounded-full overflow-hidden mt-1">
+                  <img
+                    className="w-full h-full object-cover object-center"
+                    src={`https://cms.samespace.com/assets/${item.cover}`}
+                    alt={`${item.name} cover`}
+                  />
+                </div>
+
+                <div className="flex flex-col items-start justify-between ml-3">
+                  <span>{item.name}</span> <span className="text-gray-400 text-sm">{item.artist}</span>
+                </div>
               </div>
 
-              <div className="flex flex-col items-start justify-between ml-3">
-                <span>{item.name}</span> <span className="text-gray-400 text-sm">{item.artist}</span>
+              <div className="">
+                {duration
+                  ? new Date(duration * 1000).toISOString().substr(11, 8)
+                  : "0:00"}
               </div>
-            </div>
-
-            <div className="">
-              {duration
-                ? new Date(duration * 1000).toISOString().substr(11, 8)
-                : "0:00"}
-            </div>
-          </li>
-        </button>
-      ))}
+            </li>
+          </button>
+        ))
+      )}
     </ul>
   );
 };

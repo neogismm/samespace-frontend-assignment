@@ -60,9 +60,21 @@ const App = () => {
     <div className="font-montserrat bg-gradient-to-l from-[#191414]">
       <div></div>
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
-        <div className={`flex mt-6 ml-6 ${flexboxHeight}`}>
-          <SpotifyLogo />
-          <p className="font-bold text-2xl">Spotify</p> <p className="text-xs" >®</p>
+        <div
+          className={`flex mt-6 ml-6 flex-col justify-between ${flexboxHeight}`}
+        >
+          <div className="flex">
+            <SpotifyLogo />
+            <p className="font-bold text-2xl">Spotify</p>
+            <p className="text-xs">®</p>
+          </div>
+          <a href="https://linkedin.com/in/pritamneog">
+            <img
+              alt="profile_image"
+              className="size-10 mb-11"
+              src="https://www.pngall.com/wp-content/uploads/5/Profile.png"
+            />
+          </a>
         </div>
         <div className={`${flexboxHeight} w-full`}>
           <div className="flex mt-6 px-2">
