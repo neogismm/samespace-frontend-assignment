@@ -10,17 +10,17 @@ const Search = ({ onSearch }) => {
   };
 
   return (
-    <form className="flex mt-5 w-full relative px-2 " onSubmit={(e) => e.preventDefault()}>
+    <div className="flex mt-5 w-full px-2 relative">
       <input
-        className="border p-2 rounded-lg w-full pr-10"
+        className="p-4 rounded-lg w-full pr-10 bg-white/10"
         placeholder="Search Song, Artist"
         value={query}
         onChange={handleInputChange}
       />
-      <label className="absolute right-0 pt-2 pr-2">
+      <label className="absolute right-4 bottom-4">
         <SearchIcon />
       </label>
-    </form>
+    </div>
   );
 };
 
