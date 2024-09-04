@@ -41,7 +41,7 @@ const SongList = ({ searchQuery, setActiveSong, showTopTracks, setSongCover, onS
     <ul className="flex flex-col">
       {filteredSongs.map((item) => (
         <button onClick={() => handleSongClick(item)} key={item.id}>
-          <li className="flex border h-24">
+          <li className="flex items-center justify-center border h-24">
             <div>
               <img
                 height={40}

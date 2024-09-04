@@ -69,11 +69,13 @@ const AudioPlayer = ({
         <span className="text-2xl font-bold mb-2">{song.name}</span>
         <span className="text-lg mb-4">{song.artist}</span>
       </div>
+      <div className="w-full h-[500px]">
       <img
         src={`https://cms.samespace.com/assets/${song.cover}`}
         alt={song.name}
-        className="rounded-lg object-fill h-96 w-fit"
+        className="rounded-lg object-cover object-center h-full w-full"
       />
+      </div>
       <audio
         autoPlay
         ref={audioRef}
