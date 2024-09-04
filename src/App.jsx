@@ -4,6 +4,7 @@ import Search from "./components/Search";
 import SongList from "./components/SongList";
 import AudioPlayer from "./components/AudioPlayer";
 import { ThemeContext } from "./context/ThemeContext";
+import SpotifyLogo from "./components/icons/SpotifyLogo";
 
 const App = () => {
   const { themeColor } = useContext(ThemeContext);
@@ -59,8 +60,9 @@ const App = () => {
     <div className="font-montserrat bg-gradient-to-l from-[#191414]">
       <div></div>
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
-        <div className={`flex items-center justify-center ${flexboxHeight}`}>
-          <p>Logo & Profile</p>
+        <div className={`flex mt-6 ml-6 ${flexboxHeight}`}>
+          <SpotifyLogo />
+          <p className="font-bold text-2xl">Spotify</p> <p className="text-xs" >®</p>
         </div>
         <div className={`${flexboxHeight} w-full`}>
           <div className="flex mt-6 px-2">
