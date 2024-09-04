@@ -45,10 +45,10 @@ const SongList = ({
   };
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col h-screen overflow-y-auto">
       {filteredSongs.map((item) => (
         <button onClick={() => handleSongClick(item)} key={item.id}>
-          <li className="flex items-center justify-between rounded-lg h-[88px] px-2 cursor-pointer hover:bg-white/10">
+          <li className="flex items-center justify-between rounded-lg h-[90px] px-2 cursor-pointer hover:bg-white/10">
             <div className="flex">
               <div className="size-11 rounded-full overflow-hidden mt-1">
                 <img

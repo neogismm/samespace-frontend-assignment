@@ -55,7 +55,7 @@ const App = () => {
   let flexboxHeight = "h-screen";
 
   return (
-    // <div className={`bg-gradient-to-r from-[${themeColor}] to-black`}>
+    // <div className={`bg-gradient-to-l from-[${themeColor}]`}>
     <div className="bg-gradient-to-l from-[#191414]">
       <div></div>
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
