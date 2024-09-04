@@ -8,19 +8,29 @@ const SongList = ({
   showTopTracks,
   setSongCover,
   onSetFilteredSongs,
-  duration,
 }) => {
   const [songs, setSongs] = useState([]);
   const [filteredSongs, setFilteredSongs] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
   const { setThemeColor } = useContext(ThemeContext);
 
   const fetchData = async () => {
-    setLoading(true); 
+    setLoading(true);
     try {
       const res = await fetch("https://cms.samespace.com/items/songs");
       const data = await res.json();
-      setSongs(data.data);
+      const songsWithDuration = await Promise.all(
+        data.data.map(async (song) => {
+          const audio = new Audio(song.url);
+          return new Promise((resolve) => {
+            audio.addEventListener("loadedmetadata", () => {
+              song.duration = audio.duration;
+              resolve(song);
+            });
+          });
+        })
+      );
+      setSongs(songsWithDuration);
     } catch (error) {
       console.error("Error in fetching songs: ", error);
     } finally {
@@ -52,9 +62,6 @@ const SongList = ({
   return (
     <div className="flex flex-col h-screen overflow-y-auto">
       {loading ? (
-        // <div className="flex justify-center items-center h-full">
-        //   <div className="loader">Loading...</div> {/* Loading animation */}
-        // </div>
         <Loader />
       ) : filteredSongs.length === 0 ? (
         <li className="text-center py-4 text-gray-400">Not found. Sorry!</li>
@@ -77,8 +84,8 @@ const SongList = ({
               </div>
 
               <div className="">
-                {duration
-                  ? new Date(duration * 1000).toISOString().substr(11, 8)
+                {item.duration
+                  ? new Date(item.duration * 1000).toISOString().substr(14, 5)
                   : "0:00"}
               </div>
             </li>
