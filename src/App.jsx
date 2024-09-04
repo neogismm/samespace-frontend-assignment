@@ -56,7 +56,7 @@ const App = () => {
 
   return (
     // <div className={`bg-gradient-to-r from-[${themeColor}] to-black`}>
-    <div className="bg-gradient-to-l from-gray-950" >
+    <div className="bg-gradient-to-l from-[#191414]" >
       <ResizableFlexbox flexboxHeight={flexboxHeight}>
         <div
           className={`flex items-center justify-center ${flexboxHeight}`}

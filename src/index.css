@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    body {
-      @apply text-white; /* Replace with your desired default color */
-    }
+  body {
+    @apply text-white; /* Replace with your desired default color */
   }
+}
