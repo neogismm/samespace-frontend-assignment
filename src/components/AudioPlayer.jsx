@@ -8,6 +8,7 @@ import {
   PiRewindFill,
 } from "react-icons/pi";
 import { ThemeContext } from "../context/ThemeContext";
+import EllipsisHorizontal from "./icons/EllipsisHorizontal";
 
 const AudioPlayer = ({
   song,
@@ -127,7 +128,7 @@ const AudioPlayer = ({
         />
       </div>
       <div className="flex justify-between w-full">
-        <div className="mt-4 size-16 flex justify-center items-center bg-white/10 rounded-full p-2">
+        <div className="mt-6 w-12 h-12 flex justify-center items-center bg-white/10 rounded-full p-2">
           <button>
             <HiDotsHorizontal className="w-10 h-10 rounded-full p-2" />
           </button>
@@ -140,7 +141,7 @@ const AudioPlayer = ({
               setIsPlaying(true);
             }}
           >
-            <PiRewindFill className="w-12 h-12  rounded-full p-2" />
+            <PiRewindFill className="w-12 h-12  rounded-full p-2 text-white/50" />
           </button>
           <button className="mx-2 p-2 rounded-full" onClick={handlePlayPause}>
             {isPlaying ? (
@@ -156,18 +157,20 @@ const AudioPlayer = ({
               setIsPlaying(true);
             }}
           >
-            <PiFastForwardFill className="w-12 h-12  rounded-full p-2" />
+            <PiFastForwardFill className="w-12 h-12  rounded-full p-2 text-white/50" />
           </button>
         </div>
         <button
-          className="mt-4 p-2 size-16 flex items-center justify-center rounded-full"
+          className="mt-4 p-2 flex items-center justify-center rounded-full"
           onClick={handleMute}
         >
-          {isMute ? (
-            <VolumeX className="w-10 h-10 bg-white/10   rounded-full p-2" />
-          ) : (
-            <Volume2 className="w-10 h-10 bg-white/10  rounded-full p-2" />
-          )}
+          <div className="w-12 h-12 flex justify-center items-center bg-white/10 rounded-full">
+            {isMute ? (
+              <VolumeX className="w-6 h-6" />
+            ) : (
+              <Volume2 className="w-6 h-6" />
+            )}
+          </div>
         </button>
       </div>
     </div>

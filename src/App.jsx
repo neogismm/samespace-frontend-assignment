@@ -16,7 +16,6 @@ const App = () => {
   const [filteredSongs, setFilteredSongs] = useState([]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // New state for playing status
-  const [bgColor, setBgColor] = useState("bg-white");
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
@@ -47,10 +46,6 @@ const App = () => {
     setActiveSong(filteredSongs[prevIndex]);
     setCurrentSongIndex(prevIndex);
     setIsPlaying(true); // Set isPlaying to true when the previous song is played
-  };
-
-  const handleBgColorChange = (color) => {
-    setBgColor(color);
   };
 
   let flexboxHeight = "h-screen";
