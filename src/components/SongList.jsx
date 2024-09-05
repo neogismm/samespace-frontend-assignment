@@ -60,7 +60,7 @@ const SongList = ({
   };
 
   return (
-    <div className="flex flex-col h-screen overflow-y-auto">
+    <div className="flex flex-col h-full overflow-y-auto"> {/* Ensure full height and scrollable */}
       {loading ? (
         <Loader />
       ) : filteredSongs.length === 0 ? (
