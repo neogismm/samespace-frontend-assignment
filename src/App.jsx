@@ -3,7 +3,7 @@ import ResizableFlexbox from "./components/ResizableFlexbox";
 import Search from "./components/Search";
 import SongList from "./components/SongList";
 import AudioPlayer from "./components/AudioPlayer";
-import ResponsiveLayout from "./components/ResponsiveLayout"; // Import ResponsiveLayout
+import ResponsiveLayout from "./components/ResponsiveLayout";
 import { ThemeContext } from "./context/ThemeContext";
 import SpotifyLogo from "./components/icons/SpotifyLogo";
 
@@ -16,9 +16,9 @@ const App = () => {
   const [songCover, setSongCover] = useState(null);
   const [filteredSongs, setFilteredSongs] = useState([]);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false); // New state for playing status
+  const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024); // State for screen size
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
     document.body.style.backgroundColor = themeColor;
@@ -39,14 +39,14 @@ const App = () => {
     setActiveSong(song);
     const index = filteredSongs.findIndex((s) => s.id === song.id);
     setCurrentSongIndex(index);
-    setIsPlaying(true); // Set isPlaying to true when a new song is selected
+    setIsPlaying(true);
   };
 
   const handleNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % filteredSongs.length;
     setActiveSong(filteredSongs[nextIndex]);
     setCurrentSongIndex(nextIndex);
-    setIsPlaying(true); // Set isPlaying to true when the next song is played
+    setIsPlaying(true);
   };
 
   const handlePrevSong = () => {
@@ -54,7 +54,7 @@ const App = () => {
       (currentSongIndex - 1 + filteredSongs.length) % filteredSongs.length;
     setActiveSong(filteredSongs[prevIndex]);
     setCurrentSongIndex(prevIndex);
-    setIsPlaying(true); // Set isPlaying to true when the previous song is played
+    setIsPlaying(true);
   };
 
   let flexboxHeight = "h-screen";
@@ -71,7 +71,11 @@ const App = () => {
               <p className="font-bold text-2xl">Spotify</p>
               <p className="text-xs">®</p>
             </div>
-            <a href="https://linkedin.com/in/pritamneog" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://linkedin.com/in/pritamneog"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <img
                 alt="profile_image"
                 className="size-10 mb-11 rounded-full"

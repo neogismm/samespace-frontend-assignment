@@ -9,7 +9,6 @@ import {
 } from "react-icons/pi";
 import { ThemeContext } from "../context/ThemeContext";
 
-
 const AudioPlayer = ({
   song,
   nextSong,

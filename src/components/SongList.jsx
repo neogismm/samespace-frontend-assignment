@@ -56,11 +56,11 @@ const SongList = ({
   const handleSongClick = (song) => {
     setActiveSong(song);
     setSongCover(song.cover);
-    setThemeColor(song.accent); // Assuming each song has a themeColor property
+    setThemeColor(song.accent);
   };
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto"> {/* Ensure full height and scrollable */}
+    <div className="flex flex-col h-full overflow-y-auto">
       {loading ? (
         <Loader />
       ) : filteredSongs.length === 0 ? (
