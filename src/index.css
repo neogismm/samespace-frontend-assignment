@@ -6,6 +6,8 @@
 
 body {
   overflow: hidden;
+  transition: background-color 0.3s ease-in;
+
 }
 
 @layer base {
@@ -59,4 +61,10 @@ body {
 
 .custom-slider:hover::-moz-range-thumb {
   opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .hide-on-medium-and-small {
+    display: none;
+  }
 }
