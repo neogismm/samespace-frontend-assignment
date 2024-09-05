@@ -8,7 +8,7 @@ import {
   PiRewindFill,
 } from "react-icons/pi";
 import { ThemeContext } from "../context/ThemeContext";
-import EllipsisHorizontal from "./icons/EllipsisHorizontal";
+
 
 const AudioPlayer = ({
   song,
