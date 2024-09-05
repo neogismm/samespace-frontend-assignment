@@ -68,7 +68,7 @@ const App = () => {
             <p className="font-bold text-2xl">Spotify</p>
             <p className="text-xs">®</p>
           </div>
-          <a href="https://linkedin.com/in/pritamneog">
+          <a href="https://linkedin.com/in/pritamneog" target="_blank" rel="noopener noreferrer">
             <img
               alt="profile_image"
               className="size-10 mb-11 rounded-full"

@@ -58,7 +58,6 @@ const AudioPlayer = ({
     nextSong();
     setIsPlaying(true);
     setCurrentTime(0);
-    setThemeColor(song.accent); 
   };
 
   useEffect(() => {
@@ -75,6 +74,12 @@ const AudioPlayer = ({
       sliderRef.current.style.setProperty("--value", `${value}%`);
     }
   }, [currentTime, audioRef]);
+
+  useEffect(() => {
+    if (song) {
+      setThemeColor(song.accent);
+    }
+  }, [song, setThemeColor]);
 
   if (!song) {
     return (
@@ -133,7 +138,6 @@ const AudioPlayer = ({
             onClick={() => {
               prevSong();
               setIsPlaying(true);
-              setThemeColor(song.accent); 
             }}
           >
             <PiRewindFill className="w-12 h-12  rounded-full p-2" />
@@ -150,7 +154,6 @@ const AudioPlayer = ({
             onClick={() => {
               nextSong();
               setIsPlaying(true);
-              setThemeColor(song.accent);
             }}
           >
             <PiFastForwardFill className="w-12 h-12  rounded-full p-2" />
