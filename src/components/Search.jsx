@@ -12,7 +12,7 @@ const Search = ({ onSearch }) => {
   return (
     <div className="flex mt-5 w-full px-2 relative">
       <input
-        className="p-4 rounded-lg w-full pr-10 bg-white/10"
+        className="p-4 rounded-lg w-full pr-10 bg-white/10 focus:outline-0"
         placeholder="Search Song, Artist"
         value={query}
         onChange={handleInputChange}
